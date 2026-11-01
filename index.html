@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CUFormer: Modality-Aware CT-Ultrasound Point Cloud Registration for Orthopedic Navigation</title>
+  <meta name="description" content="CUFormer registers partial intraoperative ultrasound bone surfaces to complete preoperative CT models with a Modality-Aware Transformer and reference-side visibility-guided matching.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CUFormer: Modality-Aware CT-Ultrasound Point Cloud Registration for Orthopedic Navigation">
+  <meta property="og:description" content="Modality-aware CT-ultrasound bone-surface registration for radiation-free orthopedic navigation.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans:400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261031">
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script defer src="./static/js/explorer_data.js?v=20261031"></script>
+  <script defer src="./static/js/index.js?v=20261031"></script>
+</head>
+<body>
+  <main>
+    <section class="hero publication-hero" data-section="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop has-text-centered">
+          <h1 class="title publication-title">CUFormer: Modality-Aware CT-Ultrasound Point Cloud Registration for Orthopedic Navigation</h1>
+          <p class="publication-venue">arXiv preprint</p>
+          <div class="publication-authors">
+            <span class="publication-author">Lixing Tan<sup>1</sup></span>
+            <span class="publication-author">Qing Xia<sup>1</sup></span>
+            <span class="publication-author">Yuting Guo<sup>2</sup></span>
+            <span class="publication-author">Shuai Li<sup>1</sup></span>
+            <span class="publication-author">Aimin Hao<sup>1</sup></span>
+          </div>
+          <div class="publication-affiliations"><span><sup>1</sup>Beihang University</span>&emsp;<span><sup>2</sup>Beijing Information Science and Technology University</span></div>
+
+          <nav class="publication-links" aria-label="Project resources">
+            <a href="./static/pdfs/CUFormer_arXiv.pdf" class="button is-normal is-rounded is-dark" target="_blank" rel="noopener" data-resource="paper">
+              <span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper</span>
+            </a>
+            <a href="" class="button is-normal is-rounded is-dark is-disabled" aria-disabled="true" data-resource="arxiv">
+              <span class="icon" aria-hidden="true"><i class="ai ai-arxiv"></i></span>
+              <span>arXiv · Coming soon</span>
+            </a>
+            <a href="" class="button is-normal is-rounded is-dark is-disabled" aria-disabled="true" data-resource="code">
+              <span class="icon" aria-hidden="true"><i class="fab fa-github"></i></span>
+              <span>Code · Coming soon</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="section teaser-section" data-section="teaser">
+      <div class="container is-max-desktop">
+        <img class="publication-media" src="./static/images/teaser.jpg?v=20261031" alt="Teaser: preoperative CT and the reconstructed ultrasound point cloud from tracked B-mode images enter CUFormer; the registered CT with ultrasound frames and CT contours on three B-mode images; registered results on fibula, foot, femur and spine.">
+        <p class="teaser-caption">CUFormer registers intraoperative US bone surfaces to preoperative CT for radiation-free orthopedic navigation. Tracked B-mode images are reconstructed into a partial point cloud and aligned with the CT model. CT-US results span the tibia, fibula, foot, and femur, and the spine example adds CT-RGB-D registration.</p>
+      </div>
+    </section>
+
+    <section class="section" data-section="abstract">
+      <div class="container is-max-desktop prose">
+        <h2 class="title section-title">Abstract</h2>
+        <div class="content publication-copy">
+          <p>Registering intraoperative Ultrasound (US) bone-surface point clouds to preoperative Computed Tomography (CT) models can support radiation-free orthopedic navigation. Differences in imaging physics produce distinct surface sampling patterns, complicating cross-modal feature matching. Bone strongly reflects ultrasound and casts an acoustic shadow, so US captures only the probe-facing bone surface and leaves most CT points unmatched. This partial coverage makes correspondences ambiguous on near-symmetric bones. We propose CUFormer, a modality-aware registration framework. We introduce a Modality-Aware Transformer (MAT) that encodes input modality through identity embeddings and updates features through modality-specific adapters within a shared geometric matcher. We model imaging visibility and use predicted reference-side visibility to weight coarse and fine correspondences. CUFormer achieves the lowest mean registration errors among evaluated methods on two CT-US datasets, UltraBones100k and UltraBonesHip, and the CT-RGB-D dataset SpineDepth. On UltraBones100k, it reaches mean rotation error 4.53°, translation error 3.19&nbsp;mm, and Root Mean Squared Error (RMSE) 2.54&nbsp;mm, reducing RMSE by 65.8% relative to the best-performing baseline by this metric. These results demonstrate CUFormer's effectiveness in aligning partial bone surfaces with preoperative CT across anatomical sites.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section video-section" data-section="video" id="video">
+      <div class="container is-max-desktop">
+        <h2 class="title section-title">Video</h2>
+        <div class="publication-video">
+          <video controls muted playsinline preload="metadata" poster="./static/images/video_poster.jpg?v=20261031">
+            <source src="./static/videos/cuformer_overview.mp4?v=20261031" type="video/mp4">
+          </video>
+        </div>
+        <p class="media-caption">A step-by-step walkthrough on one UltraBones100k test case: the tracked ultrasound sweep and the preoperative CT; which part of the CT the sweep actually sees (the visibility target); how a previous matcher fails on a near-symmetric bone (another test case) and where it places the strip relative to the visible bone; then each CUFormer module (shared encoder and MAT, visibility head, visibility-guided coarse matching, fine matching and pose), located on the main pipeline of the method figure and shown with its real output on this case; finally, one test case each from the fibula, hip and lumbar spine. Intermediate states and poses are saved outputs of the evaluated models; the probe and CT scanner are illustrations, and motions between poses are interpolated for display. The video starts muted; turn on the sound for its original, synthesized background music.</p>
+      </div>
+    </section>
+
+    <section class="section is-light method-section" data-section="method">
+      <div class="container is-max-desktop">
+        <h2 class="title section-title">Method</h2>
+        <img class="publication-media method-figure" src="./static/images/overview.png?v=20261031" alt="CUFormer overview: a shared encoder and the Modality-Aware Transformer produce modality-aware features; reference-side visibility guides coarse and fine matching before rigid transformation estimation; detail panels show the modality embeddings and gated adapters, and the visibility head with soft-target supervision.">
+        <div class="content publication-copy prose">
+          <p>CUFormer follows a coarse-to-fine registration pipeline. A shared KPConv-FPN encoder extracts multi-resolution features from the CT reference and the US source. MAT supplies modality identity embeddings and modality-specific residual updates within the shared geometric matcher. Reference-side visibility weights the coarse scores before superpoint correspondence selection and biases the fine scores before Sinkhorn optimal transport establishes point correspondences. A local-to-global estimator then recovers the rigid transform.</p>
+
+          <h3 class="subsection-title">Modality-Aware Transformer</h3>
+          <p>Shared geometric features do not explicitly encode the acquisition modality. MAT adds two learnable embeddings, <em>e</em><sub>ct</sub> and <em>e</em><sub>us</sub>, to the coarse features before the transformer and, through a projection φ, to the fine features before matching. The superpoint transformer contains three pairs of geometric self-attention (GeoSA) and cross-attention (CA) blocks. Separate CT and US gated bottleneck adapters follow each shared block, Adapter(<em>x</em>) = <em>x</em> + γ·W<sub>up</sub>ReLU(W<sub>down</sub><em>x</em>), with γ initialized to zero so that each adapter starts as an identity mapping. The attention layers stay shared, and only the embeddings and adapters are modality specific.</p>
+
+          <h3 class="subsection-title">Reference-side visibility</h3>
+          <p>US observes only a thin strip of the bone, so most CT points have no counterpart in the source. CUFormer models imaging visibility through geometric overlap and predicts which CT regions the US observes. The visibility head hierarchically fuses coarse, fine, and full-resolution CT features along the point-to-node hierarchy, and a small per-point network of 1×1 convolutions with group normalization and a sigmoid outputs the visibility probability <em>v<sub>i</sub></em>.</p>
+          <p>Supervision uses continuous soft targets. For each CT point, the distance <em>d<sub>i</sub></em> to the ground-truth-aligned source is mapped to <em>s<sub>i</sub></em> = clip(1 − <em>d<sub>i</sub></em>/ρ, 0, 1). Points whose target lies in the uncertain band between the negative and positive thresholds are masked.</p>
+
+          <h3 class="subsection-title">Visibility-guided matching</h3>
+          <p>At the coarse level, each aggregated visibility becomes a weight <em>w</em> that scales the superpoint scores before global top-<em>K</em> selection, favoring visible CT regions. At the fine level, λ<sub>f</sub>&nbsp;log&nbsp;<em>w</em> is added to each reference point's row of point-pair scores before Sinkhorn optimal transport, while the scores of the unmatched (dustbin) entries stay unchanged.</p>
+
+          <h3 class="subsection-title">Two-stage training</h3>
+          <p>Stage 1 initializes the shared parameters from GeoTransformer weights pretrained on 3DMatch and trains the matcher, including MAT, with a weighted circle loss on superpoint descriptors and the negative log-likelihood of ground-truth point correspondences. Stage 2 freezes the matcher and trains only the visibility head with a smooth-L1 loss against the soft targets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" data-section="demo" id="demo">
+      <div class="container is-max-desktop">
+        <h2 class="title section-title">Interactive demos</h2>
+        <p class="demo-intro">Both demos use held-out test cases and show saved CUFormer predictions. No model runs in your browser.</p>
+
+        <h3 class="demo-title">1&nbsp;&nbsp;CT on live ultrasound</h3>
+        <p class="demo-lead">A real tracked B-mode sweep along a tibia from the UltraBones100k test set. Drag the handle: left of it is the raw ultrasound, right of it is the same frame with the CT cross-section at the CUFormer estimate. The panel on the right shows where the current frame lies on the registered bone.</p>
+        <div class="sweep-demo" id="sweepDemo">
+          <div class="sweep-compare" id="sweepCompare" style="--split: 46%">
+            <canvas id="sweepRaw" aria-hidden="true"></canvas>
+            <canvas id="sweepOverlay" aria-hidden="true"></canvas>
+            <div class="sweep-handle" aria-hidden="true"><span></span></div>
+            <span class="sweep-tag is-left"><span class="tag-long">Raw ultrasound</span><span class="tag-short">Raw</span></span>
+            <span class="sweep-tag is-right"><span class="tag-long">+ CT at CUFormer estimate</span><span class="tag-short">+ CT</span></span>
+          </div>
+          <div class="sweep-locator">
+            <canvas id="sweepLocator" aria-hidden="true"></canvas>
+            <span class="sweep-tag is-left"><span class="tag-long">Frame on registered CT</span><span class="tag-short">Frame</span></span>
+          </div>
+          <video id="sweepVideo" src="./static/videos/sweep.mp4?v=20261031" poster="./static/images/sweep_poster.jpg?v=20261031" muted loop playsinline preload="auto" hidden></video>
+        </div>
+        <div class="demo-controls">
+          <button class="button is-small is-rounded demo-play" id="sweepPlay" type="button" aria-label="Pause"><span class="icon"><i class="fas fa-pause" aria-hidden="true"></i></span></button>
+          <label class="demo-range">Compare<input type="range" id="sweepSplit" min="0" max="100" value="46" aria-label="Comparison position"></label>
+          <label class="demo-range">Frame<input type="range" id="sweepSeek" min="0" max="1000" value="0" aria-label="Video position"></label>
+        </div>
+        <p class="media-caption">All 778 frames of the sweep, in acquisition order, placed with the dataset's tracking and calibration. The blue contour is computed from the retained CUFormer estimate for this scan (strict RMSE 1.43&nbsp;mm); nothing is fitted per frame.</p>
+
+        <h3 class="demo-title">2&nbsp;&nbsp;Registration explorer</h3>
+        <p class="demo-lead">Pick an anatomy and drag the slider: the CT stays fixed while the intraoperative points move from their input pose onto the bone by the CUFormer estimate. Rotate and zoom with the mouse. Colour the CT by predicted visibility to see which part of the bone the model expects the ultrasound to observe.</p>
+        <div class="explorer">
+          <div class="explorer-tabs" id="explorerTabs" role="tablist" aria-label="Anatomy"></div>
+          <div class="explorer-view" id="explorerView">
+            <canvas id="explorerCanvas" aria-label="3D view of the CT and ultrasound point clouds"></canvas>
+            <div class="explorer-legend" id="explorerLegend"></div>
+            <p class="explorer-fallback" id="explorerFallback" hidden>The 3D viewer needs WebGL.</p>
+          </div>
+          <div class="demo-controls">
+            <label class="demo-range is-wide"><span class="range-end">Input pose</span><input type="range" id="alignT" min="0" max="1000" value="0" aria-label="Alignment from input pose to CUFormer estimate"><span class="range-end">CUFormer</span></label>
+            <button class="button is-small is-rounded" id="alignPlay" type="button">Align</button>
+            <label class="checkbox demo-check"><input type="checkbox" id="visToggle"> Predicted visibility</label>
+            <label class="checkbox demo-check"><input type="checkbox" id="usToggle" checked> Ultrasound</label>
+          </div>
+          <p class="media-caption" id="explorerCaption">CT reference (blue, fixed) and intraoperative points (orange) from the test sets. The points are moved by the inverse of the estimated CT-to-ultrasound transform, which gives the same relative alignment. Intermediate slider positions interpolate between the two poses for display; CUFormer predicts the final pose in one forward pass.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-light" data-section="results">
+      <div class="container is-max-desktop">
+        <h2 class="title section-title">Results</h2>
+        <h3 class="demo-title">Comparison on three datasets</h3>
+        <p class="demo-lead">We compare CUFormer with ten baselines on the CT-US datasets UltraBones100k and UltraBonesHip and on the additional CT-RGB-D dataset SpineDepth. All methods use three specimen-level cross-validation splits and share the test samples and poses within each split, and every failure stays in the averages.</p>
+        <div class="table-wrap">
+<!--TABLE1-->
+<table class="table results-table is-narrow is-hoverable">
+<thead><tr><th rowspan="2">Method</th><th colspan="4">UltraBones100k<br><span class="col-sub">CT-US</span></th><th colspan="4">UltraBonesHip<br><span class="col-sub">CT-US</span></th><th colspan="4">SpineDepth<br><span class="col-sub">CT-RGB-D</span></th></tr>
+<tr><th>RRE&nbsp;↓</th><th>RTE&nbsp;↓</th><th>RMSE&nbsp;↓</th><th>FR&nbsp;↓</th><th>RRE&nbsp;↓</th><th>RTE&nbsp;↓</th><th>RMSE&nbsp;↓</th><th>FR&nbsp;↓</th><th>RRE&nbsp;↓</th><th>RTE&nbsp;↓</th><th>RMSE&nbsp;↓</th><th>FR&nbsp;↓</th></tr></thead><tbody>
+<tr><th scope="row">ICP</th><td>84.16<span class="std">±7.02</span></td><td>64.46<span class="std">±4.62</span></td><td>112.58<span class="std">±14.71</span></td><td>50.8<span class="std">±2.75</span></td><td>97.86<span class="std">±8.19</span></td><td>57.34<span class="std">±1.52</span></td><td>85.36<span class="std">±13.54</span></td><td>53.0<span class="std">±6.94</span></td><td>91.67<span class="std">±11.61</span></td><td>20.02<span class="std">±1.69</span></td><td>36.50<span class="std">±0.64</span></td><td>55.0<span class="std">±10.00</span></td></tr>
+<tr><th scope="row">NBReg</th><td>41.25<span class="std">±9.30</span></td><td>28.87<span class="std">±3.49</span></td><td>35.21<span class="std">±2.03</span></td><td>27.0<span class="std">±2.75</span></td><td>29.11<span class="std">±13.74</span></td><td>18.84<span class="std">±6.70</span></td><td>19.45<span class="std">±4.97</span></td><td>19.7<span class="std">±9.46</span></td><td>10.97<span class="std">±5.51</span></td><td>2.97<span class="std">±1.32</span></td><td>4.21<span class="std">±1.70</span></td><td>6.7<span class="std">±2.89</span></td></tr>
+<tr><th scope="row">PARTE</th><td>66.70<span class="std">±9.70</span></td><td>25.21<span class="std">±4.63</span></td><td>40.02<span class="std">±7.84</span></td><td>34.9<span class="std">±7.27</span></td><td>92.35<span class="std">±23.36</span></td><td>47.53<span class="std">±9.03</span></td><td>54.80<span class="std">±10.87</span></td><td>53.0<span class="std">±18.37</span></td><td>128.25<span class="std">±4.79</span></td><td>32.75<span class="std">±2.74</span></td><td>42.84<span class="std">±0.84</span></td><td>81.7<span class="std">±5.77</span></td></tr>
+<tr class="group-start"><th scope="row">Predator</th><td>16.09<span class="std">±0.45</span></td><td>7.14<span class="std">±0.40</span></td><td>7.42<span class="std">±0.10</span></td><td>1.6<span class="std">±2.75</span></td><td>58.07<span class="std">±20.02</span></td><td>27.30<span class="std">±2.54</span></td><td>32.22<span class="std">±7.03</span></td><td>27.3<span class="std">±12.03</span></td><td>5.65<span class="std">±0.67</span></td><td>3.57<span class="std">±0.22</span></td><td>3.48<span class="std">±0.14</span></td><td><strong>0.0</strong><span class="std">±0.00</span></td></tr>
+<tr><th scope="row">CoFiNet</th><td>38.99<span class="std">±10.50</span></td><td>16.74<span class="std">±4.64</span></td><td>30.64<span class="std">±20.28</span></td><td>15.9<span class="std">±7.27</span></td><td>77.00<span class="std">±13.91</span></td><td>35.61<span class="std">±9.87</span></td><td>57.50<span class="std">±9.19</span></td><td>37.9<span class="std">±6.94</span></td><td>5.06<span class="std">±0.24</span></td><td>2.98<span class="std">±0.33</span></td><td>3.16<span class="std">±0.22</span></td><td><strong>0.0</strong><span class="std">±0.00</span></td></tr>
+<tr><th scope="row">GeoTrans</th><td>19.00<span class="std">±4.32</span></td><td>13.19<span class="std">±0.14</span></td><td>13.56<span class="std">±0.39</span></td><td>1.6<span class="std">±2.75</span></td><td>26.04<span class="std">±9.90</span></td><td>16.31<span class="std">±2.00</span></td><td>19.09<span class="std">±4.31</span></td><td>6.1<span class="std">±6.94</span></td><td>21.58<span class="std">±4.37</span></td><td>5.34<span class="std">±1.27</span></td><td>7.82<span class="std">±1.61</span></td><td>11.7<span class="std">±2.89</span></td></tr>
+<tr><th scope="row">PANet</th><td>94.84<span class="std">±14.52</span></td><td>78.72<span class="std">±6.26</span></td><td>143.23<span class="std">±18.64</span></td><td>55.6<span class="std">±7.27</span></td><td>89.30<span class="std">±3.95</span></td><td>63.69<span class="std">±3.41</span></td><td>90.30<span class="std">±11.67</span></td><td>47.0<span class="std">±6.94</span></td><td>87.05<span class="std">±13.43</span></td><td>35.45<span class="std">±2.03</span></td><td>49.97<span class="std">±2.24</span></td><td>50.0<span class="std">±5.00</span></td></tr>
+<tr><th scope="row">MMMI</th><td>85.47<span class="std">±7.10</span></td><td>51.74<span class="std">±0.10</span></td><td>87.37<span class="std">±0.98</span></td><td>41.3<span class="std">±5.50</span></td><td>96.94<span class="std">±15.21</span></td><td>45.44<span class="std">±4.42</span></td><td>65.31<span class="std">±2.30</span></td><td>50.0<span class="std">±13.64</span></td><td>118.63<span class="std">±1.62</span></td><td>22.50<span class="std">±0.60</span></td><td>43.24<span class="std">±1.54</span></td><td>85.0<span class="std">±8.66</span></td></tr>
+<tr><th scope="row">RORNet</th><td>88.19<span class="std">±10.91</span></td><td>46.92<span class="std">±2.45</span></td><td>87.20<span class="std">±18.06</span></td><td>46.0<span class="std">±7.27</span></td><td>89.90<span class="std">±2.82</span></td><td>59.64<span class="std">±4.46</span></td><td>75.21<span class="std">±5.75</span></td><td>48.5<span class="std">±5.25</span></td><td>101.33<span class="std">±19.02</span></td><td>28.59<span class="std">±3.45</span></td><td>38.67<span class="std">±5.00</span></td><td>53.3<span class="std">±20.82</span></td></tr>
+<tr><th scope="row">IGASA</th><td>51.66<span class="std">±3.48</span></td><td>15.28<span class="std">±1.43</span></td><td>20.36<span class="std">±5.54</span></td><td>22.2<span class="std">±2.75</span></td><td>98.58<span class="std">±4.91</span></td><td>49.80<span class="std">±1.95</span></td><td>46.94<span class="std">±1.28</span></td><td>57.6<span class="std">±6.94</span></td><td>61.46<span class="std">±16.15</span></td><td>10.49<span class="std">±1.52</span></td><td>21.87<span class="std">±4.04</span></td><td>31.7<span class="std">±7.64</span></td></tr>
+<tr class="is-ours group-start"><th scope="row"><strong>CUFormer</strong></th><td><strong>4.53</strong><span class="std">±0.83</span></td><td><strong>3.19</strong><span class="std">±0.33</span></td><td><strong>2.54</strong><span class="std">±0.10</span></td><td><strong>0.0</strong><span class="std">±0.00</span></td><td><strong>22.00</strong><span class="std">±2.92</span></td><td><strong>12.55</strong><span class="std">±1.48</span></td><td><strong>15.07</strong><span class="std">±1.41</span></td><td><strong>1.5</strong><span class="std">±2.62</span></td><td><strong>4.72</strong><span class="std">±5.02</span></td><td><strong>2.18</strong><span class="std">±0.93</span></td><td><strong>2.36</strong><span class="std">±1.28</span></td><td><strong>0.0</strong><span class="std">±0.00</span></td></tr>
+</tbody></table>
+<!--/TABLE1-->
+        </div>
+        <p class="media-caption">Mean ± sample standard deviation across the three specimen-level cross-validation splits. Each split averages over its test scans, including failures. RRE is in degrees, RTE and strict pointwise RMSE are in mm, and FR (%) is the fraction of scans with RRE ≥ 90°. Lower is better, and best means are bold. The upper group contains per-case optimization methods, and the lower group contains learning-based methods, each ordered by publication year. NBReg: NeuralBoneReg. GeoTrans: GeoTransformer.</p>
+        <div class="content publication-copy prose results-copy">
+          <p>On the CT-US datasets, CUFormer achieves the lowest mean errors and FR, with 4.53°, 3.19&nbsp;mm, 2.54&nbsp;mm, and FR 0.0% on <strong>UltraBones100k</strong> and 22.00°, 12.55&nbsp;mm, 15.07&nbsp;mm, and FR 1.5% on <strong>UltraBonesHip</strong>. On UltraBonesHip, where the hip anatomy is deeper and harder to image with US, errors increase for the three learning-based baselines with the lowest RMSE on UltraBones100k. CUFormer also degrades there but retains the lowest RMSE. On <strong>SpineDepth</strong>, CUFormer obtains 4.72°, 2.18&nbsp;mm, 2.36&nbsp;mm, and FR 0.0%. Several baselines also perform well on this dataset, and CUFormer still reduces RMSE by 25.3% relative to CoFiNet.</p>
+        </div>
+
+        <h3 class="demo-title">Qualitative comparison</h3>
+        <img class="publication-media" src="./static/images/qualitative.jpg?v=20261031" alt="Qualitative comparison of eleven methods on UltraBones100k fibula, tibia and foot, UltraBonesHip femur, and SpineDepth L5; source points colored by pointwise error from 0 to 10 mm.">
+        <p class="media-caption">Four CT-US rows show UltraBones100k fibula, tibia, and foot and UltraBonesHip femur, followed by an additional CT-RGB-D SpineDepth L5 row. Baselines are ordered by publication year. GT shows CT in blue and US/depth in orange. Other columns show CT in gray and source points colored by pointwise error on a 0 to 10&nbsp;mm scale. Red-framed insets enlarge the boxed regions in the fibula and L5 rows.</p>
+
+        <h3 class="demo-title">Component ablation</h3>
+        <div class="table-wrap">
+<!--TABLE2-->
+<table class="table results-table ablation-table is-narrow">
+<thead><tr><th>Setting</th><th>RRE&nbsp;↓</th><th>RTE&nbsp;↓</th><th>RMSE&nbsp;↓</th></tr></thead><tbody>
+<tr><th scope="row">Baseline</th><td>19.00</td><td>13.19</td><td>13.56</td></tr>
+<tr><th scope="row">+ MAT</th><td>7.06</td><td>5.90</td><td>5.41</td></tr>
+<tr><th scope="row">+ MAT (w/o pretrain)</th><td>15.10</td><td>15.46</td><td>16.60</td></tr>
+<tr><th scope="row">+ Visibility</th><td>7.95</td><td>7.54</td><td>7.88</td></tr>
+<tr class="is-ours"><th scope="row"><strong>+ MAT + Visibility</strong></th><td><strong>4.53</strong></td><td><strong>3.19</strong></td><td><strong>2.54</strong></td></tr>
+</tbody></table>
+<!--/TABLE2-->
+        </div>
+        <p class="media-caption">UltraBones100k, averaged across three splits. w/o pretrain: shared parameters are not initialized from 3DMatch weights. RRE is in degrees, and RTE and RMSE are in mm.</p>
+        <img class="publication-media narrow-figure" src="./static/images/ablation.jpg?v=20261031" alt="Qualitative component ablation on UltraBones100k: Baseline, Visibility, MAT, and MAT + Visibility on fibula, tibia and foot cases, with US points colored by displacement from the ground-truth alignment.">
+        <p class="media-caption">Qualitative comparison of the component ablation on UltraBones100k. US points are colored by displacement from the ground-truth alignment in millimeters.</p>
+        <div class="content publication-copy prose results-copy">
+          <p>Each module improves Baseline on its own: MAT reduces RMSE from 13.56 to 5.41&nbsp;mm, and Visibility reduces it to 7.88&nbsp;mm. Without pretraining, RMSE rises from 5.41 to 16.60&nbsp;mm, about 3.1× that of MAT, which indicates that initializing the shared parameters from same-modality pretraining is critical when paired CT-US data are limited. On top of MAT, visibility guidance reduces RMSE by 53.0%, from 5.41 to 2.54&nbsp;mm, compared with 41.9% on Baseline, and combining both modules gives the best results.</p>
+        </div>
+
+        <h3 class="demo-title">Visibility-guided matching</h3>
+        <div class="table-wrap">
+<!--TABLE3-->
+<table class="table results-table ablation-table is-narrow">
+<thead><tr><th>Setting</th><th>RRE&nbsp;↓</th><th>RTE&nbsp;↓</th><th>RMSE&nbsp;↓</th></tr></thead><tbody>
+<tr><th scope="row">No Visibility</th><td>7.06</td><td>5.90</td><td>5.41</td></tr>
+<tr><th scope="row">+ Visibility Coarse</th><td>4.85</td><td>3.65</td><td>2.85</td></tr>
+<tr><th scope="row">+ Visibility Fine</th><td>4.81</td><td>3.60</td><td>2.79</td></tr>
+<tr class="is-ours"><th scope="row"><strong>+ Visibility Full</strong></th><td><strong>4.53</strong></td><td><strong>3.19</strong></td><td><strong>2.54</strong></td></tr>
+<tr class="is-oracle group-start"><th scope="row">+ Visibility GT</th><td>4.51</td><td>2.85</td><td>2.35</td></tr>
+</tbody></table>
+<!--/TABLE3-->
+        </div>
+        <p class="media-caption">Ablation on top of MAT, averaged across three splits. Coarse and Fine fuse predicted visibility at the respective matching stage, Full fuses it at both stages, and GT uses ground-truth visibility as an oracle.</p>
+        <img class="publication-media narrow-figure" src="./static/images/visibility.jpg?v=20261031" alt="Predicted reference-side visibility on CT surfaces and its deviation from the overlap-derived soft target.">
+        <p class="media-caption">Predicted reference-side visibility. Top: predicted probability <em>v<sub>i</sub></em>. Bottom: deviation |<em>v<sub>i</sub></em> − <em>s<sub>i</sub></em>| from the soft target.</p>
+        <div class="content publication-copy prose results-copy">
+          <p>Either stage alone yields most of the gain, and fusing visibility at both stages gives the lowest errors among the predicted-visibility configurations. The remaining gap to the GT-visibility oracle is 0.02°, 0.34&nbsp;mm, and 0.19&nbsp;mm, so fusion at both stages recovers 99.2%, 88.9%, and 93.8% of the oracle's improvement in RRE, RTE, and RMSE. On the test scans of one randomly selected UltraBones100k split, the visibility head reaches an Average Precision of 92.04%, an AUROC of 94.81%, an F1 of 86.33%, and an Expected Calibration Error of 0.025.</p>
+        </div>
+
+        <h3 class="demo-title">Robustness to initial misalignment</h3>
+        <img class="publication-media" src="./static/images/initial_pose.png?v=20261031" alt="Mean strict RMSE and mean rotation error versus initial rotation and translation for seven methods on UltraBones100k.">
+        <p class="media-caption">Seven methods on the UltraBones100k test scans of one randomly selected split. The US is rotated about the CT centroid and translated while the CT stays fixed. (a,b) Mean strict RMSE and mean RRE versus rotation at 30&nbsp;mm translation. (c,d) The same metrics versus translation at 30° rotation.</p>
+        <div class="content publication-copy prose results-copy">
+          <p>CUFormer has the lowest mean RMSE at every perturbation level in both sweeps, rising from 2.64 to 3.70&nbsp;mm between 0° and 90° of rotation, and the lowest mean RRE except at 90°, where GeoTransformer reaches 8.47° and CUFormer 9.29°. The protocol and success and flip rates are given in Supplementary Section S2 of the paper.</p>
+        </div>
+
+        <h3 class="demo-title">Runtime</h3>
+        <div class="content publication-copy prose results-copy">
+          <p>On NVIDIA RTX 4090 GPUs, the CUFormer forward pass takes 0.055 to 0.115&nbsp;s per scan on average across the three datasets, while the complete per-case optimization of NBReg takes 13.9 to 23.4&nbsp;s. The two timing scopes differ: CUFormer excludes CPU neighborhood construction and host-to-device transfer, and NBReg was measured on GPUs shared with other workloads. Details are given in Supplementary Section S1 of the paper.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="citation" data-section="citation">
+      <div class="container is-max-desktop prose">
+        <h2 class="title section-title">Citation</h2>
+        <pre class="bibtex"><code>@article{tan2026cuformer,
+  title   = {{CUFormer}: Modality-Aware {CT}-Ultrasound Point Cloud Registration for Orthopedic Navigation},
+  author  = {Tan, Lixing and Xia, Qing and Guo, Yuting and Li, Shuai and Hao, Aimin},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer project-footer">
+    <div class="content has-text-centered">
+      <p>Ultrasound frames and CT models from UltraBones100k (CC BY 4.0); additional cases from UltraBonesHip and SpineDepth.</p>
+      <p class="template-credit">Page design inspired by the <a href="https://nerfies.github.io/" target="_blank" rel="noopener noreferrer">Nerfies</a> academic project-page style.</p>
+    </div>
+  </footer>
+</body>
+</html>

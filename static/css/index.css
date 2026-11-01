@@ -665,3 +665,7 @@ input[type="range"] {
   margin-right: auto;
   display: block;
 }
+.publication-affiliations.publication-corresponding {
+  font-size: 0.9em;
+  margin-top: 0.25rem;
+}
